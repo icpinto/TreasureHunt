@@ -3,13 +3,13 @@ package org.example;
 import java.util.List;
 
 public class LakeNazoma {
-    public static int[][] grid;
-    public static int[][] warriorsLocation = new int[1][2];
-    public static int[][] lotusLocation= new int[1][2];
-    public static int[][] killerFishLocation= new int[1][2];
-    public static int[][] ruberEaterLocation= new int[1][2];
+    private static int[][] grid;
+    private static int[][] warriorsLocation = new int[2][2];
+    private static int[][] lotusLocation= new int[2][2];
+    private static int[][] killerFishLocation= new int[2][2];
+    private static int[][] ruberEaterLocation= new int[2][2];
 
-    public void placeLotus(){
+    public synchronized void placeLotus(){
         int x,y;
         do {
             x = (int) (Math.random() * 11);
@@ -20,7 +20,7 @@ public class LakeNazoma {
         lotusLocation[0] = new int[]{x, y};
     }
 
-    public void placeKillerFish(){
+    public synchronized void placeKillerFish(){
         int x,y;
         do {
             x = (int) (Math.random() * 11);
@@ -31,7 +31,7 @@ public class LakeNazoma {
         killerFishLocation[0] = new int[]{x,y};
     }
 
-    public void placeRubberEater(){
+    public synchronized void placeRubberEater(){
         int x,y;
         do {
             x = (int) (Math.random() * 11);
@@ -42,7 +42,7 @@ public class LakeNazoma {
         ruberEaterLocation[0] = new int[]{x, y};
     }
 
-    public SupperWarrior placeWarriors(){
+    public synchronized SupperWarrior placeWarriors(){
         int x,y;
         do {
             x = (int) (Math.random() * 11);
@@ -54,7 +54,7 @@ public class LakeNazoma {
         return sw1;
     }
 
-    private Boolean isOccupied(int x, int y, int[][] otherOccupents) {
+    private synchronized Boolean isOccupied(int x, int y, int[][] otherOccupents) {
         if (otherOccupents.length > 0) {
             for (int i = 0; i < otherOccupents.length; i++) {
                 if (otherOccupents[i][0] == x && otherOccupents[i][1] == y) {
@@ -67,23 +67,23 @@ public class LakeNazoma {
 
 
 
-    public int[][] getGrid() {
+    public synchronized int[][] getGrid() {
         return grid;
     }
 
-    public int[][] getWarriorsLocation() {
+    public static synchronized int[][] getWarriorsLocation() {
         return warriorsLocation;
     }
 
-    public int[][] getLotusLocation() {
+    public static synchronized int[][] getLotusLocation() {
         return lotusLocation;
     }
 
-    public int[][] getKillerFishLocation() {
+    public static synchronized int[][] getKillerFishLocation() {
         return killerFishLocation;
     }
 
-    public int[][] getRuberEaterLocation() {
+    public static synchronized int[][] getRuberEaterLocation() {
         return ruberEaterLocation;
     }
 

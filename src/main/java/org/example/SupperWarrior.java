@@ -14,12 +14,12 @@ public class SupperWarrior extends  Warrior{
         while(this.getHasFins() && this.getAlive() && !this.getWinner()){
             int[] nextValidLocation = new int[0];
             boolean found = false;
-            ArrayList<ArrayList<Integer>> nextValidLocations = this.getNextValidLocations(LakeNazoma.warriorsLocation);
+            ArrayList<ArrayList<Integer>> nextValidLocations = this.getNextValidLocations(LakeNazoma.getWarriorsLocation());
             for(int i=0; i < nextValidLocations.size(); i++){
                 int nextXLocation = nextValidLocations.get(i).get(0);
                 int nextYLocation = nextValidLocations.get(i).get(1);
 
-                if(this.checkForLotus(LakeNazoma.lotusLocation, new int[]{nextXLocation, nextYLocation})){
+                if(this.checkForLotus(LakeNazoma.getLotusLocation(), new int[]{nextXLocation, nextYLocation})){
                     nextValidLocation = new int[]{nextXLocation, nextYLocation};
                     this.setImmortality(true);
                     found = true;
@@ -31,10 +31,10 @@ public class SupperWarrior extends  Warrior{
                 nextValidLocation = new int[]{nextValidLocations.get(index).get(0), nextValidLocations.get(index).get(1)};
             }
             // update the status
-            this.updateWarriorStatus(LakeNazoma.killerFishLocation, LakeNazoma.ruberEaterLocation, nextValidLocation);
+            this.updateWarriorStatus(LakeNazoma.getKillerFishLocation(), LakeNazoma.getRuberEaterLocation(), nextValidLocation);
 
             //update warrior location
-            this.updateWarriorLocation(nextValidLocation, LakeNazoma.warriorsLocation);
+            this.updateWarriorLocation(nextValidLocation, LakeNazoma.getWarriorsLocation());
         }
     }
 
@@ -73,8 +73,8 @@ public class SupperWarrior extends  Warrior{
         for(int i=0; i< warriorsLocations.length; i++){
             if(warriorsLocations[i][0]== oldLocation[0] && warriorsLocations[i][1]== oldLocation[1]){
                 this.setLocation(warriorNewLocation);
-                LakeNazoma.warriorsLocation[i][0]=warriorNewLocation[0];
-                LakeNazoma.warriorsLocation[i][1]=warriorNewLocation[1];
+                warriorsLocations[i][0]=warriorNewLocation[0];
+                warriorsLocations[i][1]=warriorNewLocation[1];
             }
         }
 

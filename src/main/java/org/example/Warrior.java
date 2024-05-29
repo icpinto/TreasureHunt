@@ -94,7 +94,6 @@ public abstract class Warrior {
                 for( int j=0; j < warriorsLocations.length; j++){
                     if(warriorsLocations[j][0]==new_x && warriorsLocations[j][1]==new_y){
                         found = true;
-                        continue;
                     }
                 }
                 if(!found){
