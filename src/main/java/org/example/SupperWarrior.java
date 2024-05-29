@@ -40,7 +40,7 @@ public class SupperWarrior extends  Warrior{
 
 
     private boolean checkForLotus(int[][] lotusLocations, int[] warriorNextLocation) {
-        for(int i=0; i < lotusLocations.length; ++i){
+        for(int i=0; i < lotusLocations.length; i++){
             if (lotusLocations[i][0]== warriorNextLocation[0] && lotusLocations[i][1]== warriorNextLocation[1]){
                 return true;
             }
